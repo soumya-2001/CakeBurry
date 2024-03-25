@@ -1,0 +1,130 @@
+{%extends 'base.html'%}
+
+{%block main_block%}
+{%load static%}
+<!-- Hero Start -->
+<div class="container-fluid bg-light py-6 my-6 mt-0">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-7 col-md-12">
+                <h1 class="display-1 mb-4 animated bounceInDown">Sweet Treats,Delivered!!</h1>
+                <br>
+                <a href="{%url 'signin'%}"
+                    class="btn btn-primary border-0 rounded-pill py-3 px-4 px-md-5 me-4 animated bounceInLeft">Sign
+                    In</a>
+                <a href="" class="btn btn-primary border-0 rounded-pill py-3 px-4 px-md-5 animated bounceInLeft">Know
+                    More</a>
+            </div>
+            <div class="col-lg-5 col-md-12">
+                <img src="{%static 'img/hero.jpg'%}" class="img-fluid rounded animated zoomIn" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hero End -->
+
+
+<!-- About Satrt -->
+<div class="container-fluid py-6">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-5 wow bounceInUp" data-wow-delay="0.1s">
+                <img src="{%static 'img/about.jpeg'%}" class="img-fluid rounded" alt="">
+            </div>
+            <div class="col-lg-7 wow bounceInUp" data-wow-delay="0.3s">
+                <small
+                    class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">About
+                    Us</small>
+                <h1 class="display-5 mb-4">Trusted By 200 + satisfied clients</h1>
+                <p class="mb-4">Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore eit esdioilore
+                    magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullaemco laboeeiris nisi ut aliquip ex ea commodo consequat. Duis aute
+                    irure
+                    dolor iesdein reprehendeerit in voluptate velit esse cillum dolore.</p>
+                <div class="row g-4 text-dark mb-5">
+                    <div class="col-sm-6">
+                        <i class="fas fa-share text-primary me-2"></i>Fresh and Fast food Delivery
+                    </div>
+                    <div class="col-sm-6">
+                        <i class="fas fa-share text-primary me-2"></i>24/7 Customer Support
+                    </div>
+                    <div class="col-sm-6">
+                        <i class="fas fa-share text-primary me-2"></i>Easy Customization Options
+                    </div>
+                    <div class="col-sm-6">
+                        <i class="fas fa-share text-primary me-2"></i>Delicious Deals for Delicious Meals
+                    </div>
+                </div>
+                <a href="" class="btn btn-primary py-3 px-5 rounded-pill">About Us<i
+                        class="fas fa-arrow-right ps-2"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+
+<!-- Service Start -->
+<div class="container-fluid service py-6">
+    <div class="container">
+        <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
+            <small
+                class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">Our
+                Services</small>
+            <h1 class="display-5 mb-5">What We Offer</h1>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.1s">
+                <div class="bg-light rounded service-item">
+                    <div class="service-content d-flex align-items-center justify-content-center p-4">
+                        <div class="service-content-icon text-center">
+                            <i class="fas fa-cheese fa-7x text-primary mb-4"></i>
+                            <h4 class="mb-3">Special Cakes</h4>
+                            <p class="mb-4">Customized & Special Cakes for all Occasions</p>
+
+                            <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.3s">
+                <div class="bg-light rounded service-item">
+                    <div class="service-content d-flex align-items-center justify-content-center p-4">
+                        <div class="service-content-icon text-center">
+                            <i class="fas fa-walking fa-7x text-primary mb-4"></i>
+                            <h4 class="mb-3">Home Delivery</h4>
+                            <p class="mb-4">Savoring flavours to your doorstep!</p>
+                            <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.7s">
+                <div class="bg-light rounded service-item">
+                    <div class="service-content d-flex align-items-center justify-content-center p-4">
+                        <div class="service-content-icon text-center">
+                            <i class="fas fa-utensils fa-7x text-primary mb-4"></i>
+                            <h4 class="mb-3">Vegan Cakes</h4>
+                            <p class="mb-4">Serving healthy and delicious Vegan Cakes</p>
+                            <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.5s">
+                <div class="bg-light rounded service-item">
+                    <div class="service-content d-flex align-items-center justify-content-center p-4">
+                        <div class="service-content-icon text-center">
+                            <i class="fas fa-phone fa-7x text-primary mb-4"></i>
+                            <h4 class="mb-3">Customer Support</h4>
+                            <p class="mb-4">We offer 24/7 Customer Support Available</p>
+                            <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Service End -->
+
+{%endblock%}

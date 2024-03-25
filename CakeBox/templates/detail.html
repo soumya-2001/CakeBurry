@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block main_block %}
+{% load static %}
+
+<div class="container-fluid service">
+    <div class="container ">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-4 col-sm-10 wow bounceInUp" data-wow-delay="0.1s">
+                <div class="bg-light rounded service-item">
+                    <div class="text-center">
+                        <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
+                            <h3 class="display-5 mb-5">{{cake.title}}</h3>
+                        </div>
+                        <img src="{{cake.image.url}}" width="60%" height="auto">
+                        <p class="text-justified"><h6>{{cake.description}}</h6></p>  
+                        <select name="Occasion">             
+                            {%for op in cake.occasion_object.all%}
+                               <option value="{{op.name}}">{{op.name}}</option>
+                            {%endfor%}
+                        </select>
+                        <select name="Flavour">             
+                            {%for op in cake.flavour_object.all%}
+                               <option value="{{op.name}}">{{op.name}}</option>
+                            {%endfor%}
+                        </select>
+                        <p class="mt-3 text-dark">
+                            <label for=""><h5>Qty</h5></label> <input type="number" value="1"  name="qty" class="py-2 px-5"/>
+                        </p>  
+
+                    </div>
+                    <div class="service-detail p-4">
+                        {%for c in data%}
+                             <div class="service-detail-text">
+                                <h4 class="mb-3">Weight(kg): {{ c.weight_in_kg }}</h4>
+                                <div class="text-center">
+                                    <a href="#" class="btn btn-primary px-4 py-2 rounded-pill">Rs.{{ c.price }}</a>
+                                </div>
+                            </div> 
+                        {%endfor%}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
