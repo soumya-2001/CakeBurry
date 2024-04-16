@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block main_block %}
+{% load static %}
+
+<style>
+    .description {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>
+
+<!-- Service Start -->
+<div class="container-fluid service">
+    <div class="container">
+        <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
+            <h1 class="display-5 mb-5">Cakes We Offer</h1>
+        </div>
+        <div class="row g-4 mb-5">
+            {% for p in data %}
+            <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.1s">
+                <div class="bg-light rounded service-item">
+                    <div class="service-content d-flex align-items-center justify-content-center p-4">
+                        <div class="service-content-icon text-center">
+                            <img class="img-fluid rounded-top" src="{{ p.image.url }}" alt="">
+                            <span><h2 class="mb-3">{{ p.title }}</h2></span>
+                            <p class="mb-4 description">{{ p.description }}</p>
+                            <a href="{% url 'cake-detail' p.id %}" class="btn btn-primary px-4 py-2 rounded-pill">More Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Service End -->
+
+{%endblock%}
+
