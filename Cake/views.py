@@ -5,7 +5,7 @@ from django.views.generic import View,DetailView,TemplateView
 from Cake.forms import RegistrationForm,LoginForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
-from Cake.models import CakeVariant,Cake,BasketItem,Basket,Occasion,Flavour,Shape,Order,OrderItems
+from Cake.models import CakeVariant,Cake,BasketItem,Basket,Occasion,Flavour,Shape,Order,OrderItems,Category
 from Cake.decorators import signin_required,owner_permission_required
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
@@ -76,7 +76,22 @@ class SignInView(View):
 class IndexView(View):
     def get(self,request,*args, **kwargs):
         qs=Cake.objects.all()
-        return render(request,"index.html",{"data":qs})
+        
+        categories=Category.objects.all()
+        selected_category=request.GET.get("category")
+        if selected_category:
+            qs=qs.filter(category_object__name=selected_category)
+            
+        occasions=Occasion.objects.all()
+        selected_occasion=request.GET.get("occasion")
+        if selected_occasion:
+            qs=qs.filter(occasion_object__name=selected_occasion)
+            
+        flavours=Flavour.objects.all()
+        selected_flavour=request.GET.get("flavour")
+        if selected_flavour:
+            qs=qs.filter(flavour_object__name=selected_flavour)
+        return render(request,"index.html",{"data":qs,"categories":categories,"occasions":occasions,"flavours":flavours})
 
 
 #url:localhost:8000/cake/{id}/
