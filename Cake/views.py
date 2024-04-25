@@ -155,7 +155,7 @@ class CartItemUpdateQuatityView(View):
             basket_item_object.save()
             
         return redirect("basket-items")
-    
+       
 @method_decorator([signin_required,never_cache],name="dispatch")
 class CheckOutView(View):
     
@@ -168,10 +168,11 @@ class CheckOutView(View):
         email=request.POST.get("email")
         phone=request.POST.get("phone")
         address=request.POST.get("address")
+        
         payment_method=request.POST.get("payment")
-
         
         
+        # print(email,phone,address)
         # step 1 create an order instance
         order_obj=Order.objects.create(
             user_object=request.user,
@@ -179,7 +180,8 @@ class CheckOutView(View):
             phone=phone,
             email=email,
             total=request.user.cart.basket_total,
-            payment=payment_method
+            
+            payment=payment_method,
         )
         # step 2 create order_item instance 
         try:
@@ -192,40 +194,41 @@ class CheckOutView(View):
                 )
                 bi.is_order_placed=True
                 bi.save()
-                print("txt 1")
-
+                print("test block-1")
         except:
             order_obj.delete()
             
         #  update basket_item_object is_order_placed(True)    
         finally:
             
-            print("test block 2")
+            print("test block-2")
+            
             print(payment_method)
             print(order_obj)
+            
             if payment_method=="online" and order_obj:
-                print("test block 3")
                 
-                client = razorpay.Client(auth=(KEY_ID,KEY_SECRET))
+                print("test block-3")
+                
+                client = razorpay.Client(auth=(KEY_ID, KEY_SECRET))
+                
+                amount=int(order_obj.get_order_total*100)
 
-                data = { "amount": order_obj.get_order_total*100, "currency": "INR", "receipt": "order_rcptid_11" }
-                
+                data = { "amount": amount, "currency": "INR", "receipt": "order_rcptid_11" }
                 payment = client.order.create(data=data)
                 order_obj.order_id=payment.get("id")
                 order_obj.save()
-                
                 print("payment initiate",payment)
-                
                 context={
                     "key":KEY_ID,
                     "order_id":payment.get("id"),
                     "amount":payment.get("amount")
                 }
                 return render(request,"payment.html",{"context":context})
-            
+                
             return redirect("index")
-        
-        
+    
+
 @method_decorator([signin_required,never_cache],name="dispatch")
 class SignOutView(View):
     def get(self,request,*args,**kwargs):
@@ -244,21 +247,20 @@ class OrderItemRemoveView(View):
         OrderItems.objects.get(id=id).delete()
         return redirect("order-summary")
     
- 
-# @method_decorator(csrf_exempt,name="dispatch")   
-# class PaymentVerificationView(View):
-#     def post(self,request,*args, **kwargs):
-#         client=razorpay.Client(auth=(KEY_ID,KEY_SECRET))
-#         data=request.POST
+@method_decorator(csrf_exempt,name="dispatch")   
+class PaymentVerificationView(View):
+    def post(self,request,*args, **kwargs):
+        client=razorpay.Client(auth=(KEY_ID,KEY_SECRET))
+        data=request.POST
         
-#         try:
-#             client.utility.verify_payment_signature(data)
-#             print(data)
-#             order_obj=Order.objects.get(order_id=data.get("razorpay_order_id"))
-#             order_obj.is_paid=True
-#             order_obj.save()
-#             print("***Trasaction Completed***")
+        try:
+            client.utility.verify_payment_signature(data)
+            print(data)
+            order_obj=Order.objects.get(order_id=data.get("razorpay_order_id"))
+            order_obj.is_paid=True
+            order_obj.save()
+            print("***Trasaction Completed***")
             
-#         except:
-#             print("!!!Transaction Failed!!!")
-#         return render (request,"success.html")
+        except:
+            print("!!!Transaction Failed!!!")
+        return render (request,"success.html")
