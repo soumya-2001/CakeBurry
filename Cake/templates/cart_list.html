@@ -44,6 +44,7 @@
                             <img src="{{ bi.cakevarient_object.cake_object.image.url }}" alt="" width="150px" height="140px"/>
                             <div>
                                 <p>Price:{{ bi.cakevarient_object.price }}</p>
+                                <p>Weight:{{ bi.cakevarient_object.weight_in_kg }}</p>
                                 <!-- Assuming these fields are ForeignKey relationships, access the related objects -->
                                 <p>Flavor:{{ bi.flavour_object.name }}</p>
                                 <p>Shape:{{ bi.shape_object.name }}</p>

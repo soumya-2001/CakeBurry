@@ -196,7 +196,7 @@ class CheckOutView(View):
             email=email,
             total=request.user.cart.basket_total,
             
-            payment=payment_method,
+            payment=payment_method
         )
         # step 2 create order_item instance 
         try:
